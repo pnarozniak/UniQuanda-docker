@@ -1,0 +1,86 @@
+version: '3'
+services: 
+    loadbalancer:
+        tty: true
+        build: ./loadbalancer
+        networks: 
+            - quanda_network
+        ports:
+            - 80:80
+            - 443:443
+            # zaślepki
+            - 3001:3001
+            # authorization
+            - 3002:3002
+            # image
+            - 3003:3003
+            # baza danych
+        container_name: Quanda_Load_Balancer
+        depends_on: 
+            - quanda1
+            - quanda2
+    quanda1:
+        tty: true
+        networks: 
+            - quanda_network
+        volumes:
+            - C:/sciezka/do/quandy:/quanda
+        container_name: Quanda_App1
+        build: ./app
+    quanda2:
+        tty: true
+        networks: 
+            - quanda_network
+        volumes:
+            - C:/sciezka/do/quandy:/quanda
+        container_name: Quanda_App2
+        build: ./app
+        depends_on: 
+            - database
+            - authorization
+            - image
+            - misc
+    database:
+        image: mysql-server:8.0
+        restart: always
+        networks: 
+            - quanda_network
+        environment: 
+            MYSQL_USER: quanda
+            MYSQL_PASSWORD: oeUgIM(w5[9UXtsP
+        volumes:
+            - db-data:/var/lib/mysql
+        container_name: Quanda_Database
+    authorization:
+        tty: true
+        build: ./auth
+        networks: 
+            - quanda_network
+        volumes:
+            - C:/sciezka/do/servera/auth:/quanda
+        container_name: Quanda_Authorization
+    misc:
+        tty: true
+        build: ./misc
+        networks: 
+            - quanda_network
+        volumes:
+            - C:/sciezka/do/servera/zaślepek:/quanda
+        container_name: Quanda_Misc
+    image:
+        tty: true
+        image: httpd
+        networks: 
+            - quanda_network
+        volumes:
+            - image-data:/quanda
+        container_name: Quanda_Image
+    #TODO redis
+networks:
+    quanda_network:
+        driver: bridge
+volumes:
+    db-data:
+        driver: local
+    image-data:
+        driver: local
