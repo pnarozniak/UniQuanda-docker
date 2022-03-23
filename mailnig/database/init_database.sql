@@ -1,0 +1,9 @@
+CREATE USER 'roundcubemail'@'%' IDENTIFIED BY 'Q6vG4UJ9Hs3WxuND';
+CREATE USER 'mailu'@'%' IDENTIFIED BY 'zgP29V6t7q8CkR3H';
+
+CREATE DATABASE IF NOT EXISTS `roundcubemail`;
+CREATE DATABASE IF NOT EXISTS `mailu`;
+
+GRANT ALL PRIVILEGES ON `roundcubemail`.* TO 'roundcubemail'@'%';
+GRANT ALL PRIVILEGES ON `mailu`.* TO 'mailu'@'%';
+FLUSH PRIVILEGES;

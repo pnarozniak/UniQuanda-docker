@@ -1,0 +1,141 @@
+version: "3.9"
+services:
+
+  database: #Baza danych dla aplikacji
+    container_name: Uniquanda_DB
+    build:
+      dockerfile: ./database/Dockerfile
+      context: ./
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ydhRvjMnrWNtJ4Ye
+    ports:
+      - "9001:3306"
+    volumes:
+      - database-volume:/var/lib/mysql
+    networks: 
+      - uniquanda_network
+
+
+  phpmyadmin: #PhpMyAdmin dla bazy aplikacji
+    image: phpmyadmin/phpmyadmin:5.1.3
+    container_name: Uniquanda_PhpMyAdmin
+    restart: always
+    depends_on:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - "12001:80"
+    networks: 
+      - uniquanda_network
+
+  authorization_database: #Baza danych serwera autoryzacyjnego
+    image: mysql:8.0.28
+    container_name: Uniquanda_Authorization_Database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: uniquanda_auth
+      MYSQL_ROOT_PASSWORD: uniquanda_auth
+      MYSQL_USER: uniquanda_auth
+      MYSQL_PASSWORD: uniquanda_auth
+    ports:
+      - "10001:3306"
+    volumes:
+      - authorization-database-volume:/var/lib/mysql
+    networks: 
+      - uniquanda_network
+
+  authorization: #Serwer autoryzacyjny
+    container_name: Uniquanda_Authrorization
+    build:
+      dockerfile: ./authorization/Dockerfile
+      context: ./
+    ports:
+      - "11001:80"
+      - "11002:443"
+    networks: 
+      - uniquanda_network
+    volumes:
+      - ./authorization/authorization:/app
+    depends_on:
+      - authorization_database
+
+  backend1: #Serwer aplikacyjny nr 1.
+    tty: true
+    container_name: Uniquanda_APP1
+    build:
+      dockerfile: ./backend/Dockerfile
+      context: ./
+    ports:
+      - "3001:80"
+      - "3002:443"
+    networks: 
+      - uniquanda_network
+    volumes:
+      - ./backend/backend:/app
+    depends_on:
+      - authorization
+      - database
+      - redis
+    hostname: uniquanda_backend1
+
+  backend2: # Serwer aplikacyjny nr 2
+    tty: true
+    container_name: Uniquanda_APP2
+    build:
+      dockerfile: ./backend/Dockerfile
+      context: ./
+    ports:
+      - "3011:80"
+      - "3012:443"
+    networks: 
+      - uniquanda_network
+    volumes:
+      - ./backend/backend:/app
+    depends_on:
+      - authorization
+      - database
+      - redis
+    environment:
+      ASPNETCORE_HTTP_PORT: 3011
+      ASPNETCORE_HTTPS_PORT: 3012
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    hostname: uniquanda_backend2
+
+  lb: #Load Balancer
+    tty: true
+    build: /load_balancer
+    container_name: Uniquanda_LB
+    ports:
+      - "80:80"
+      - "443:443"
+    networks: 
+      - uniquanda_network
+    depends_on:
+      - backend2
+      - backend1
+
+  redis: #redis
+    tty: true
+    image: redis:7.0-rc1-alpine
+    container_name: Uniquanda_Redis
+    command: redis-server --requirepass 5w4jMnfds7GH
+    ports:
+     - "6001:6379"
+    networks:
+      - uniquanda_network
+    environment:
+     - REDIS_REPLICATION_MODE=master
+    
+
+volumes:
+  database-volume:
+  authorization-database-volume:
+
+networks:
+  uniquanda_network:
+    driver: bridge
