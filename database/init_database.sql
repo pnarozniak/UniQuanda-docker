@@ -1,0 +1,5 @@
+
+CREATE USER 'uniquanda'@'%' IDENTIFIED BY 'LfKvkG49Y8bX6cxZ';
+CREATE DATABASE IF NOT EXISTS `uniquanda`;
+GRANT ALL PRIVILEGES ON `uniquanda`.* TO 'uniquanda'@'%';
+FLUSH PRIVILEGES;
