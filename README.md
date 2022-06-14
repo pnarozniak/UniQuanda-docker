@@ -1,34 +1,13 @@
 # Stawianie środowiska lokalnego
 
-1. Zalogować się na FTP serwera mailowego
-2. Przejść do folderu `/home/cert`
-3. Pobrać plik `cert.crt` i wstawić go do głównego folderu (ten gdzie jest plik `docker-compose.yml`)
-4. Stworzyć ASP.NET projekt o nazwie backend i wstawić go do folderu backend. Struktura powinna wyglądać tak
-```
-...
--backend/
------.vs/
------backend/
------backend.sln
------Dockerfile
-...
--docker-compose.yml
--README.MD
-```
-5. Stworzyć ASP.NET projekt o nazwie authorization i wstawić go do folderu authorization. Struktura powinna wyglądać tak
-```
-...
--authorization/
------.vs/
------authorization/
------authorization.sln
------Dockerfile
-...
--docker-compose.yml
--README.MD
-```
-6. Wykonać `docker-compose builld`
-7. Wykonać `docker-compose up`
+1. Pobrać repozytorium backendowe do folderu `C:\UniQuanda`
+2. Za 1 razem wykonać `docker-compose up --builld`, za każdym kolejnym `docker-compose up`
+3. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
+4. Postgres Tools > Import / Export Servers... 
+5. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
+6. Znowu kliknąć na folder, wybrać plik i następnie select po czym next
+7. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
+8. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
 
 # Porty usług
 ### Backend 1 
@@ -40,22 +19,18 @@
 ### Load balancer: 
 * http: 80 
 * https: 443
-### Frontend (Do postawienia)
-* http: 8001
-* https: 8002
+### Frontend
+* http: 4200
 ### Baza danych dla aplikacji
-* MySQL 9001
-### Serwer zdjęć (Do postawienia)
-* http: 5001
-* https: 5002
+* Postgres 9001
 ### Redis (Do przetestowania)
 * Redis: 6001
 ### Serwer autoryzacji
 * http: 11001 
 * https: 11002
 ### Baza danych serwera autoryzacji
-* MySQL: 10001
-### PhpMyAdmin dla bazy danych aplikacyjnej
+* Postgres: 10001
+### PGAdmin4
 * http: 12001
 
 # Stawianie poczty
