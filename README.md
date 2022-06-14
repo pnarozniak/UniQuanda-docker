@@ -1,7 +1,7 @@
 # Stawianie środowiska lokalnego
 
 1. Pobrać repozytorium backendowe do folderu `C:\UniQuanda`
-2. Za 1 razem wykonać `docker-compose up --builld`, za każdym kolejnym `docker-compose up`
+2. Za 1 razem wykonać `docker-compose up --build`, za każdym kolejnym `docker-compose up`
 3. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
 4. Postgres Tools > Import / Export Servers... 
 5. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
