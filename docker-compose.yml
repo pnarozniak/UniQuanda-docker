@@ -63,6 +63,22 @@ services:
       - ./../UniQuanda/:/app
       - /app/UniQuanda.Presentation.API/bin/
       - /app/UniQuanda.Presentation.API/debug/
+      - /app/UniQuanda.Presentation.API/obj/
+      - /app/UniQuanda.Core.Application/bin/
+      - /app/UniQuanda.Core.Application/debug/
+      - /app/UniQuanda.Core.Application/obj/
+      - /app/UniQuanda.Core.Domain/bin/
+      - /app/UniQuanda.Core.Domain/debug/
+      - /app/UniQuanda.Core.Domain/obj/
+      - /app/UniQuanda.Infrastructure/bin/
+      - /app/UniQuanda.Infrastructure/debug/
+      - /app/UniQuanda.Infrastructure/obj/
+      - /app/UniQuanda.Infrastructure.Presistence/bin/
+      - /app/UniQuanda.Infrastructure.Presistence/debug/
+      - /app/UniQuanda.Infrastructure.Presistence/obj/
+      - /app/UniQuanda.Tests/bin/
+      - /app/UniQuanda.Tests/debug/
+      - /app/UniQuanda.Tests/obj/
     depends_on:
       - authorization_database
       - database
@@ -88,6 +104,22 @@ services:
       - ./../UniQuanda/:/app
       - /app/UniQuanda.Presentation.API/bin/
       - /app/UniQuanda.Presentation.API/debug/
+      - /app/UniQuanda.Presentation.API/obj/
+      - /app/UniQuanda.Core.Application/bin/
+      - /app/UniQuanda.Core.Application/debug/
+      - /app/UniQuanda.Core.Application/obj/
+      - /app/UniQuanda.Core.Domain/bin/
+      - /app/UniQuanda.Core.Domain/debug/
+      - /app/UniQuanda.Core.Domain/obj/
+      - /app/UniQuanda.Infrastructure/bin/
+      - /app/UniQuanda.Infrastructure/debug/
+      - /app/UniQuanda.Infrastructure/obj/
+      - /app/UniQuanda.Infrastructure.Presistence/bin/
+      - /app/UniQuanda.Infrastructure.Presistence/debug/
+      - /app/UniQuanda.Infrastructure.Presistence/obj/
+      - /app/UniQuanda.Tests/bin/
+      - /app/UniQuanda.Tests/debug/
+      - /app/UniQuanda.Tests/obj/
     depends_on:
       - authorization_database
       - database
