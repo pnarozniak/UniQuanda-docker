@@ -9,6 +9,8 @@
 7. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
 8. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
 
+_Należy zwrócić uwagę, czy źródła pakietów NuGet w Visual Studio są ustawione na https://api.nuget.org/v3/index.json_
+
 # Porty usług
 ### Backend 1 
 * http: 3001 
@@ -25,10 +27,7 @@
 * Postgres 9001
 ### Redis (Do przetestowania)
 * Redis: 6001
-### Serwer autoryzacji
-* http: 11001 
-* https: 11002
-### Baza danych serwera autoryzacji
+### Baza danych dla autoryzacji
 * Postgres: 10001
 ### PGAdmin4
 * http: 12001
@@ -40,8 +39,6 @@ _Wymagania wstępne_
 * plik certyfikatu cert.pem (certyfikat wraz z ścieżką certyfikacji)
 * serwer z publicznym adresem IP
 * domena
-
-_Aktualnie można pobrać certyfikat i klucz z serwera mailowego z folderu /home/cert_
 
 ## Instalacja Dockera
 [Więcej informacji](https://docs.docker.com/engine/install/debian/)
