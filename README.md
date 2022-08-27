@@ -1,8 +1,9 @@
 # Stawianie środowiska lokalnego
 
 1. Pobrać repozytorium backendowe do folderu `C:\UniQuanda`
-2. Do głównego folderu dodać plik `certificate.pem` oraz `private.pem`.
-3. Wybrać środowisko (`local` lub `developmentserver`) w pliku `.env` oraz ustawić wartości zmiennych `BACKEND_HTTP_PORT` na `80` i `BACKEND_HTTPS_PORT` na `443` w przypadku środowiska `local` lub `BACKEND_HTTP_PORT` na `2001` i `BACKEND_HTTPS_PORT` na `2002` w przypadku środowiska `developmentserver`.
+2. Dodać plik `.env` na podstawie wzoru `.env.sample`
+3. Do głównego folderu dodać plik `certificate.pem` oraz `private.pem`.
+4. Wybrać środowisko (`local` lub `developmentserver`) w pliku `.env` oraz ustawić wartości zmiennych `BACKEND_HTTP_PORT` na `80` i `BACKEND_HTTPS_PORT` na `443` w przypadku środowiska `local` lub `BACKEND_HTTP_PORT` na `2001` i `BACKEND_HTTPS_PORT` na `2002` w przypadku środowiska `developmentserver`.
 5. Za 1 razem wykonać `docker-compose up --build`, za każdym kolejnym `docker-compose up`
 6. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
 7. Postgres Tools > Import / Export Servers... 
