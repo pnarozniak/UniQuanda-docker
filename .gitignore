@@ -2,3 +2,4 @@
 *.cer
 *.key
 *.pem
+.env
