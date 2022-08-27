@@ -16,8 +16,9 @@ RUN a2enmod lbmethod_byrequests
 RUN a2enmod ssl
 
 RUN mkdir /home/cert
-RUN openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout /home/cert/RootCA.key -out /home/cert/RootCA.pem -subj "/C=US/CN=Example-Root-CA"
-RUN openssl x509 -outform pem -in /home/cert/RootCA.pem -out /home/cert/RootCA.crt
+
+COPY certificate.pem /home/cert/
+COPY private.pem /home/cert/
 
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 COPY ./load_balancer/apache/vhost_uniquanda.conf /etc/apache2/sites-enabled/vhost_uniquanda.conf

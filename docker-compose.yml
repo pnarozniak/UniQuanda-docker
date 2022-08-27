@@ -52,7 +52,7 @@ services:
     tty: true
     container_name: Uniquanda_APP1
     build:
-      dockerfile: ./backend/Dockerfile
+      dockerfile: ./backend/Dockerfile.${ENVIROMENT}
       context: ./
     ports:
       - "3001:80"
@@ -93,7 +93,7 @@ services:
     tty: true
     container_name: Uniquanda_APP2
     build:
-      dockerfile: ./backend/Dockerfile
+      dockerfile: ./backend/Dockerfile.${ENVIROMENT}
       context: ./
     ports:
       - "3011:80"
@@ -137,8 +137,8 @@ services:
       context: ./
     container_name: Uniquanda_LB
     ports:
-      - "80:80"
-      - "443:443"
+      - "${BACKEND_HTTP_PORT}:80"
+      - "${BACKEND_HTTPS_PORT}:443"
     networks: 
       - uniquanda_network
     depends_on:

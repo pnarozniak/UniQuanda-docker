@@ -1,7 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
 ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+
 WORKDIR /app
-COPY *.crt /app/
-RUN dotnet dev-certs https -ep /app/cert.crt
+COPY certificate.pem /app/
+COPY private.pem /app/
+RUN openssl pkcs12 -export -in certificate.pem -inkey private.pem -out output.pfx -password pass:5OxZU5XlJPLt
+RUN dotnet dev-certs https -ep /app/output.pfx -p 5OxZU5XlJPLt
 RUN dotnet dev-certs https --trust
+
 ENTRYPOINT dotnet watch run --urls="http://+:80;https://+:443" --project UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj

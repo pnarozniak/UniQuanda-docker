@@ -1,13 +1,15 @@
 # Stawianie środowiska lokalnego
 
 1. Pobrać repozytorium backendowe do folderu `C:\UniQuanda`
-2. Za 1 razem wykonać `docker-compose up --build`, za każdym kolejnym `docker-compose up`
-3. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
-4. Postgres Tools > Import / Export Servers... 
-5. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
-6. Znowu kliknąć na folder, wybrać plik i następnie select po czym next
-7. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
-8. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
+2. Do głównego folderu dodać plik `certificate.pem` oraz `private.pem`.
+3. Wybrać środowisko (`local` lub `developmentserver`) w pliku `.env` oraz ustawić wartości zmiennych `BACKEND_HTTP_PORT` na `80` i `BACKEND_HTTPS_PORT` na `443` w przypadku środowiska `local` lub `BACKEND_HTTP_PORT` na `2001` i `BACKEND_HTTPS_PORT` na `2002` w przypadku środowiska `developmentserver`.
+5. Za 1 razem wykonać `docker-compose up --build`, za każdym kolejnym `docker-compose up`
+6. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
+7. Postgres Tools > Import / Export Servers... 
+8. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
+9. Znowu kliknąć na folder, wybrać plik i następnie select po czym next
+10. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
+11. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
 
 _Należy zwrócić uwagę, czy źródła pakietów NuGet w Visual Studio są ustawione na https://api.nuget.org/v3/index.json_
 
@@ -19,10 +21,11 @@ _Należy zwrócić uwagę, czy źródła pakietów NuGet w Visual Studio są ust
 * http: 3011 
 * https: 3012
 ### Load balancer: 
-* http: 80 
-* https: 443
+* http: 80 (local) 2001 (dev+)
+* https: 443 (local) 2002 (dev+)
 ### Frontend
-* http: 4200
+* http: 4200 (local) 80 (dev+)
+* https: 443 (dev+)
 ### Baza danych dla aplikacji
 * Postgres 9001
 ### Redis (Do przetestowania)
