@@ -3,3 +3,4 @@
 *.key
 *.pem
 .env
+developmentserver.sh

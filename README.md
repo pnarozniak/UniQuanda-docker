@@ -4,13 +4,14 @@
 2. Dodać plik `.env` na podstawie wzoru `.env.sample`
 3. Do głównego folderu dodać plik `certificate.pem` oraz `private.pem`.
 4. Wybrać środowisko (`local` lub `developmentserver`) w pliku `.env` oraz ustawić wartości zmiennych `BACKEND_HTTP_PORT` na `80` i `BACKEND_HTTPS_PORT` na `443` w przypadku środowiska `local` lub `BACKEND_HTTP_PORT` na `2001` i `BACKEND_HTTPS_PORT` na `2002` w przypadku środowiska `developmentserver`.
-5. Za 1 razem wykonać `docker-compose up --build`, za każdym kolejnym `docker-compose up`
-6. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
-7. Postgres Tools > Import / Export Servers... 
-8. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
-9. Znowu kliknąć na folder, wybrać plik i następnie select po czym next
-10. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
-11. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
+5. W przypadku środowiska developerskiego - stworzyć plik `developmentserver.sh` w folderze `backend` na podstawie `\backend\developmentserver.sample.sh` i wypełnić hasła, secretsy oraz connection string
+6. Za 1 razem wykonać `docker compose up --build`, za każdym kolejnym `docker compose up`
+7. Wejść na localhost:12001 i zalogować się za pomocą loginu `admin@uniquanda.pl` i hasła `uniquanda`.
+8. Postgres Tools > Import / Export Servers... 
+9. Kliknąć na folder i w górnym menu wybrać przesyłanie pliku i przesłać plik `C:\UniQuanda\UniQuanda-Docker\pgadmin\config.json` Po załadowaniu się na 100% kliknąć cancel.
+10. Znowu kliknąć na folder, wybrać plik i następnie select po czym next
+11. Zaznaczyć wszystkie serwery i kliknąć next, potem finish.
+12. W rozwijanej liście serwerów wybrać serwer > PPM > Connect. Hasło to `uniquanda` (Można sobie zapamiętać)
 
 _Należy zwrócić uwagę, czy źródła pakietów NuGet w Visual Studio są ustawione na https://api.nuget.org/v3/index.json_
 

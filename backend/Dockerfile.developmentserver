@@ -8,5 +8,10 @@ COPY private.pem /app/
 RUN openssl pkcs12 -export -in certificate.pem -inkey private.pem -out output.pfx -password pass:5OxZU5XlJPLt
 RUN dotnet dev-certs https -ep /app/output.pfx -p 5OxZU5XlJPLt
 RUN dotnet dev-certs https --trust
+COPY ./backend/developmentserver.sh ./../scripts/
+RUN chmod +x /scripts/developmentserver.sh
 
-ENTRYPOINT dotnet run --urls="http://+:80;https://+:443" --project UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj --environment developmentserver
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install --global dotnet-ef --version 6.0.8
+
+ENTRYPOINT ./../scripts/developmentserver.sh
