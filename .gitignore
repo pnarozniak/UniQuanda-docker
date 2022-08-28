@@ -2,3 +2,5 @@
 *.cer
 *.key
 *.pem
+.env
+developmentserver.sh
