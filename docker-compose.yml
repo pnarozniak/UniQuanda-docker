@@ -54,6 +54,8 @@ services:
     build:
       dockerfile: ./backend/Dockerfile.${ENVIROMENT}
       context: ./
+      args:
+        SSH_PASS: ${SSL_CERT_PASS}
     ports:
       - "3001:80"
       - "3002:443"
@@ -96,6 +98,8 @@ services:
     build:
       dockerfile: ./backend/Dockerfile.${ENVIROMENT}
       context: ./
+      args:
+        SSH_PASS: ${SSL_CERT_PASS}
     ports:
       - "3011:80"
       - "3012:443"
