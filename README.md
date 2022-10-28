@@ -82,3 +82,10 @@ Dane logowania na konto administratora znajdują się w pliku mailu.env w zmienn
 * INITIAL_ADMIN_ACCOUNT=my_username
 * INITIAL_ADMIN_PW=my_password
 * INITIAL_ADMIN_DOMAIN=abc.def.pl
+
+# Debugowanie w Visual Studio backendu (kontenerów)
+1. W Visual Studio kliknij `(Ctrl+Alt+P)` lub `Debug -> Attach to process`
+2. W `Connection Type` wybierz `Docker (Linux Conteiner)`
+3. W `Connection Target` wybierz proces o nazwie `UniQuanda.Presentation.API` i kliknij Dołącz
+4. Wybierz tryb `Managed`
+5. By debugować backend wejdź na link `http://localhost:3001/swagger/index.html`
