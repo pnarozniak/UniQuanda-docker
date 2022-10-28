@@ -1,4 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS uniquanda AUTHORIZATION uniquanda;
+CREATE EXTENSION pg_trgm;
 BEGIN;
       CREATE TEXT SEARCH CONFIGURATION public.polish ( COPY = pg_catalog.english );
 
