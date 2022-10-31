@@ -11,5 +11,5 @@ INSERT INTO uniquanda."AcademicTitles"("Name", "AcademicTitleType") VALUES
 ('dr hab.', 'bachelor'),
 ('prof.', 'bachelor'),
 ('prof. PJATK', 'academic'),
-('prof. UŚ', 'academic');
+('prof. UŚ', 'academic'),
 ('prof. PW', 'academic');

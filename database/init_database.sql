@@ -1,5 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS uniquanda AUTHORIZATION uniquanda;
-SET search_path = uniquanda
+SET search_path = uniquanda;
 BEGIN;
       CREATE TEXT SEARCH CONFIGURATION uniquanda.polish ( COPY = pg_catalog.english );
 
