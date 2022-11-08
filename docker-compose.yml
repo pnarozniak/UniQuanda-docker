@@ -31,6 +31,8 @@ services:
       - "12001:80"
     networks: 
       - uniquanda_network
+    volumes:
+      - ./pgadmin/config.json:/pgadmin4/servers.json
 
   authorization_database: #Autoryzacyjna baza danych
     container_name: Uniquanda_Authorization_Database
