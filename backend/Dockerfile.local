@@ -7,5 +7,9 @@ COPY private.pem /app/
 RUN openssl pkcs12 -export -in certificate.pem -inkey private.pem -out output.pfx -password pass:${SSH_PASS}
 RUN dotnet dev-certs https -ep /app/output.pfx -p ${SSH_PASS}
 RUN dotnet dev-certs https --trust
+COPY ./backend/local.sh ./../scripts/
+RUN chmod +x /scripts/local.sh
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install --global dotnet-ef --version 6.0.8
 
-ENTRYPOINT dotnet watch run --urls="http://+:80;https://+:443" --project UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj
+ENTRYPOINT ./../scripts/local.sh
