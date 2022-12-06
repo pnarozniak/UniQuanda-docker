@@ -144,7 +144,7 @@ services:
   lb: #Load Balancer
     tty: true
     build:
-      dockerfile: ./load_balancer/Dockerfile
+      dockerfile: ./lb/Dockerfile
       context: ./
     container_name: Uniquanda_LB
     ports:
@@ -155,6 +155,7 @@ services:
     depends_on:
       - backend2
       - backend1
+    hostname: uniquanda_lb
 
   redis: #redis
     tty: true
