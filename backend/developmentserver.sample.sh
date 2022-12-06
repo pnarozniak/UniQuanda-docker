@@ -16,6 +16,10 @@ dotnet user-secrets set "Image:EndpointUrl" "https://dev.uniquanda.pl:{TU_WSTAW_
 dotnet user-secrets set "UniQuandaClient:Url" "https://dev.uniquanda.pl" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 dotnet user-secrets set "Recaptcha:SecretKey" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 
-dotnet-ef database update --project ./../app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj --context AuthDbContext --connection "Host=Uniquanda_Authorization_Database;Port=5432;Database=uniquanda;Username=xyz;Password=xyz"
-dotnet-ef database update --project ./../app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj --context AppDbContext --connection "Host=Uniquanda_DB;Port=5432;Database=uniquanda;Username=xyz;Password=xyz"
+if [ $1 -eq 1 ]
+then
+    dotnet-ef database update --project ./../app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj --context AuthDbContext --connection "Host=Uniquanda_Authorization_Database;Port=5432;Database=uniquanda;Username=xyz;Password=xyz"
+    dotnet-ef database update --project ./../app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj --context AppDbContext --connection "Host=Uniquanda_DB;Port=5432;Database=uniquanda;Username=xyz;Password=xyz"
+fi
+
 dotnet run --urls="http://+:80;https://+:443" --project ./../app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj
