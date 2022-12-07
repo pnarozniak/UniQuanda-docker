@@ -14,7 +14,7 @@ services:
       - "9001:5432"
     volumes:
       - database-volume:/var/lib/postgresql
-    networks: 
+    networks:
       - uniquanda_network
 
 
@@ -29,7 +29,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - "12001:80"
-    networks: 
+    networks:
       - uniquanda_network
     volumes:
       - ./pgadmin/config.json:/pgadmin4/servers.json
@@ -47,7 +47,7 @@ services:
       - "10001:5432"
     volumes:
       - authorization-database-volume:/var/lib/postgresql
-    networks: 
+    networks:
       - uniquanda_network
 
   backend1: #Serwer aplikacyjny nr 1.
@@ -58,10 +58,11 @@ services:
       context: ./
       args:
         SSH_PASS: ${SSL_CERT_PASS}
+        CONTAINER_ID: 1
     ports:
       - "3001:80"
       - "3002:443"
-    networks: 
+    networks:
       - uniquanda_network
     volumes:
       - ./../UniQuanda/:/app
@@ -102,10 +103,11 @@ services:
       context: ./
       args:
         SSH_PASS: ${SSL_CERT_PASS}
+        CONTAINER_ID: 2
     ports:
       - "3011:80"
       - "3012:443"
-    networks: 
+    networks:
       - uniquanda_network
     volumes:
       - ./../UniQuanda/:/app
@@ -132,6 +134,7 @@ services:
       - authorization_database
       - database
       - redis
+      - backend1
     environment:
       ASPNETCORE_HTTP_PORT: 80
       ASPNETCORE_HTTPS_PORT: 443
@@ -141,17 +144,18 @@ services:
   lb: #Load Balancer
     tty: true
     build:
-      dockerfile: ./load_balancer/Dockerfile
+      dockerfile: ./lb/Dockerfile
       context: ./
     container_name: Uniquanda_LB
     ports:
       - "${BACKEND_HTTP_PORT}:80"
       - "${BACKEND_HTTPS_PORT}:443"
-    networks: 
+    networks:
       - uniquanda_network
     depends_on:
       - backend2
       - backend1
+    hostname: uniquanda_lb
 
   redis: #redis
     tty: true
@@ -164,7 +168,7 @@ services:
       - uniquanda_network
     environment:
      - REDIS_REPLICATION_MODE=master
-    
+
 
 volumes:
   database-volume:

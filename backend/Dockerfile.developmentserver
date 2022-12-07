@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-
 ARG SSH_PASS
+ARG CONTAINER_ID
+
 ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+ENV CONTAINER_ID_MAPPED $CONTAINER_ID
 
 WORKDIR /app
 COPY certificate.pem /app/
@@ -15,4 +17,4 @@ RUN chmod +x /scripts/developmentserver.sh
 ENV PATH $PATH:/root/.dotnet/tools
 RUN dotnet tool install --global dotnet-ef --version 6.0.8
 
-ENTRYPOINT ./../scripts/developmentserver.sh
+ENTRYPOINT ./../scripts/developmentserver.sh ${CONTAINER_ID_MAPPED}
