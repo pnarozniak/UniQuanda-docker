@@ -13,6 +13,7 @@ dotnet user-secrets set "AWS:Region" "xyz" --project "/app/UniQuanda.Presentatio
 dotnet user-secrets set "Image:EndpointUrl" "https://dev.uniquanda.pl:{TU_WSTAW_WARTOŚĆ_Z_ENV_BACKEND_HTTPS_PORT}/api/Image/" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 dotnet user-secrets set "UniQuandaClient:Url" "https://dev.uniquanda.pl" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 dotnet user-secrets set "Recaptcha:SecretKey" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
+dotnet user-secrets set "OAuth:Google:ClientSecret" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 
 if [ $1 -eq 1 ]
 then
