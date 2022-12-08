@@ -15,6 +15,10 @@ dotnet user-secrets set "UniQuandaClient:Url" "https://dev.uniquanda.pl" --proje
 dotnet user-secrets set "Recaptcha:SecretKey" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 dotnet user-secrets set "OAuth:Google:ClientSecret" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 dotnet user-secrets set "OAuth:Google:RedirectUri" "https://dev.uniquanda.pl:{TU_WSTAW_WARTOŚĆ_Z_ENV_BACKEND_HTTPS_PORT}/api/Auth/login-by-google" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
+dotnet user-secrets set "PayU:OAuth:ClientId" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
+dotnet user-secrets set "PayU:OAuth:ClientSecret" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
+dotnet user-secrets set "PayU:OrderCreateRequest:MerchantPosId" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
+dotnet user-secrets set "PayU:OrderCreateRequest:ContinueUrl" "xyz" --project "/app/UniQuanda.Presentation.API/UniQuanda.Presentation.API.csproj"
 
 if [ $1 -eq 1 ]
 then
