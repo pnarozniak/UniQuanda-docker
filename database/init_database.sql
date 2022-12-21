@@ -13,4 +13,6 @@ BEGIN;
       ALTER TEXT SEARCH CONFIGURATION uniquanda.polish
         ALTER MAPPING FOR asciiword, asciihword, hword_asciipart, word, hword, hword_part
         WITH polish_ispell;
+
+      CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 COMMIT;
