@@ -13,7 +13,7 @@ services:
     ports:
       - "9001:5432"
     volumes:
-      - database-volume:/var/lib/postgresql
+      - database-volume:/var/lib/postgresql/data
     networks:
       - uniquanda_network
 
@@ -46,7 +46,7 @@ services:
     ports:
       - "10001:5432"
     volumes:
-      - authorization-database-volume:/var/lib/postgresql
+      - authorization-database-volume:/var/lib/postgresql/data
     networks:
       - uniquanda_network
 
@@ -172,7 +172,9 @@ services:
 
 volumes:
   database-volume:
+    external: true
   authorization-database-volume:
+    external: true
 
 networks:
   uniquanda_network:
